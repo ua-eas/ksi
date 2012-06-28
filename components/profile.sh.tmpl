@@ -1,0 +1,20 @@
+#
+# profile.sh
+#
+# Master profile script for the {{SERVICE_NAME}}-{{SERVICE_ENVIRONMENT}} service.
+#
+
+{{SERVICE_PREFIX}}_HOME={{SERVICE_HOME}}
+export {{SERVICE_PREFIX}}_HOME
+
+{{SERVICE_PREFIX}}_CONFIG={{SERVICE_CONFIG}}
+export {{SERVICE_PREFIX}}_CONFIG
+
+{{SERVICE_PREFIX}}_BASE={{SERVICE_BASE}}
+export {{SERVICE_PREFIX}}_BASE
+
+for component in `ls ${{SERVICE_PREFIX}}_CONFIG/__control__/profile.d`
+do
+    . ${{SERVICE_PREFIX}}_CONFIG/__control__/profile.d/$component
+done
+

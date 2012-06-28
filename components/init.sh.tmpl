@@ -1,0 +1,133 @@
+#!/bin/bash
+
+#
+# init.sh
+#
+# Master init script for the {{SERVICE_NAME}}-{{SERVICE_ENVIRONMENT}} service.
+#
+
+#
+# service environment
+
+{{SERVICE_PREFIX}}_USER={{SERVICE_USER}}
+{{SERVICE_PREFIX}}_GROUP={{SERVICE_GROUP}}
+
+{{SERVICE_PREFIX}}_HOME={{SERVICE_HOME}}
+{{SERVICE_PREFIX}}_CONFIG={{SERVICE_CONFIG}}
+{{SERVICE_PREFIX}}_BASE={{SERVICE_BASE}}
+
+#
+# utility variables and functions
+
+component_list=`ls ${{SERVICE_PREFIX}}_CONFIG/__control__/init.d | sed 's/^[0-9]*//'`
+reversed_component_list=`ls ${{SERVICE_PREFIX}}_CONFIG/__control__/init.d | sort -r |  sed 's/^[0-9]*//'` 
+
+check_user_and_group () {
+
+    MYUSER=`id -un`
+    if [ "X$MYUSER" != "X${{SERVICE_PREFIX}}_USER" ]
+    then
+        echo "$0 must be run as user '${{SERVICE_PREFIX}}_USER'."
+        exit 1
+    fi
+
+    MYGROUP=`id -gn`
+    if [ "X$MYGROUP" != "X${{SERVICE_PREFIX}}_GROUP" ]
+    then
+        echo "$0 must be run as user '${{SERVICE_PREFIX}}_GROUP'."
+        exit 1
+    fi
+}
+
+check_process () {
+    if [ "X$1" = "X" ]
+    then
+        echo "No process to look for!"
+        exit 1
+    fi
+
+    PROCPIDS=`pgrep -u ${{SERVICE_PREFIX}}_USER -f "$1"`
+    if [ "X$PROCPIDS" = "X" ]
+    then
+        return 1;
+    else
+        return 0;
+    fi
+}
+
+usage () {
+    echo "Usage:  $0 start|stop|restart|status" 1>&2
+    for component in `echo $component_list`
+    do
+        echo "          $component start|stop|status" 1>&2               
+    done
+    exit 1
+}
+
+#
+# source in all component init scripts
+
+for component in `ls ${{SERVICE_PREFIX}}_CONFIG/__control__/init.d`
+do
+    . ${{SERVICE_PREFIX}}_CONFIG/__control__/init.d/$component
+done
+
+#
+# main
+
+check_user_and_group
+
+case "$1" in
+
+'start')
+        for component in `echo $component_list`
+        do
+            eval "${component}_start"
+        done
+        ;;
+
+'stop')
+        for component in `echo $reversed_component_list`
+        do
+            eval "${component}_stop"
+        done
+        ;;
+
+'restart')
+        for component in `echo $reversed_component_list`
+        do
+            eval "${component}_stop"
+        done
+        sleep 10
+        for component in `echo $component_list`
+        do
+            eval "${component}_start"
+        done
+        ;;
+'status')
+        for component in `echo $component_list`
+        do
+            eval "${component}_status"
+        done
+        ;;
+*)
+    if [ "X$1" != "X" ]
+    then
+        if echo "$component_list" | grep "$1" > /dev/null
+        then
+            if [ "X$2" != "X" ]
+            then
+                eval "${1}_execute $2" || usage
+            else
+                usage
+            fi
+        else
+            usage
+        fi
+    else
+        usage
+    fi
+    ;;
+esac
+
+exit
