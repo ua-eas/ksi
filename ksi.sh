@@ -17,7 +17,7 @@
 #      % ksi.sh -s kuali -e dev -c jdk -v 1.6.0_33 -i 3 -a install 2>&1 | tee ksi.log
 #
 # The installer will recommend a standard spot to which to move the
-# log file at the end of the run.
+# log output at the end of the run.
 #
 # The service installer:
 #
@@ -29,7 +29,7 @@
 # * Sources several helper scripts to set up convenience environment
 #   variables, verify paths, define utility functions, etc.;
 # 
-# * Invokes the appropriate action script for the specified component.
+# * Sources the appropriate action script for the specified component.
 #
 # Note that by default, the installer assumes the following root paths:
 #
@@ -41,6 +41,11 @@
 #
 # The above root paths can be overriden by setting the KSI_HOME,
 # KSI_CONFIG, and KSI_BASE environment variables before invocation.
+#
+# Also note that if you want to see lots more debugging output, you
+# can set the KSI_VERBOSE environment variable to any value -- the
+# presence of the exported variable in the calling shell's environment
+# will turn on lots of extra details about the run.
 #
 # Mike Simpson
 # Kuali Applications Technical Team
@@ -179,6 +184,7 @@ export SERVICE_NAME SERVICE_ENVIRONMENT SERVICE_USER SERVICE_GROUP \
 echo "[-ksi-] Sourcing helper scripts ..."
 
 . ./_setup.sh
+. ./_custom.sh
 . ./_utilities.sh
 . ./_stub.sh
 

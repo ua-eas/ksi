@@ -1,0 +1,49 @@
+common: &default_settings
+  license_key: '726c470fa775c45e456776a4b19209aeca80b80e'
+  enable_auto_app_naming: false
+  enable_auto_transaction_naming: true
+  app_name: {{TOMCAT_NEWRELIC_APPNAME}}
+  log_level: info
+  ssl: false
+  capture_params: true
+  transaction_tracer:
+    enabled: true
+    transaction_threshold: apdex_f
+    record_sql: raw
+    #obfuscated_sql_fields: credit_card, ssn, password
+    log_sql: false
+    stack_trace_threshold: 0.5
+    explain_enabled: true
+    explain_threshold: 0.5
+  error_collector:
+    enabled: true
+  thread_profiler:
+    enabled: true
+  browser_monitoring:
+    auto_instrument: true
+    enabled: true
+    
+dev:
+  <<: *default_settings
+  app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Development)
+  agent_enabled: true
+
+tst:
+  <<: *default_settings
+  app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Test)
+  agent_enabled: false
+
+stg:
+  <<: *default_settings
+  app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Staging)
+  agent_enabled: true
+
+prd:
+  <<: *default_settings
+  app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Production)
+  agent_enabled: true
+
+sup:
+  <<: *default_settings
+  app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Support)
+  agent_enabled: false

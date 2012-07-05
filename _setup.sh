@@ -17,7 +17,7 @@
 #
 # Mike Simpson
 # Kuali Applications Technical Team
-# June 2012
+# July 2012
 #
 #-----------------------------------------------------------------------#
 
@@ -28,7 +28,7 @@
 echo "[-setup-] Checking for required environment variables ..."
 
 # --------------------------------------  --------------------------------------  ----------------------------------------------------  --------------------------------------------
-# CONVENTIONAL PLACEHOLDER                SPECIFIC EXAMPLE                        IN CONVERSATION                                       ENVIRONMENT VARIABLE
+# REQUIRED SEED INFORMATION               SPECIFIC EXAMPLE                        IN CONVERSATION                                       ENVIRONMENT VARIABLE
 # --------------------------------------  --------------------------------------  ----------------------------------------------------  --------------------------------------------
 #
 # <service name>           [ <service> ]  kuali                                   "the service name"                                    ${SERVICE_NAME}
@@ -55,81 +55,9 @@ do
     if [ "X" == "X${!x}" ]; then
         echo >&2 "[*setup*] + missing environment variable ${x}"
     else
-        echo "[-setup-] + using ${x} = ${!x}"
+        [ ${!KSI_VERBOSE[@]} ] && echo "[-setup-] + using ${x} = ${!x}"
     fi
 done
-
-#if [ "X" == "X${SERVICE_NAME}" ]; then
-#    echo >&2 "[*setup*] + missing environment variable \${SERVICE_NAME}"
-#else
-#    echo "[-setup-] + using SERVICE_NAME = ${SERVICE_NAME}"
-#fi
-#
-#if [ "X" == "X${SERVICE_ENVIRONMENT}" ]; then
-#    echo >&2 "[*setup*] + missing environment variable \${SERVICE_ENVIRONMENT}"
-#else
-#    echo "[-setup-] + using SERVICE_ENVIRONMENT = ${SERVICE_ENVIRONMENT}"
-#fi
-#
-#if [ "X" == "X${SERVICE_USER}" ]; then
-#    echo >&2 "[*setup*] + missing environment variable \${SERVICE_USER}"
-#else
-#    echo "[-setup-] + using SERVICE_USER = ${SERVICE_USER}"
-#fi
-#
-#if [ "X" == "X${SERVICE_GROUP}" ]; then
-#    echo >&2 "[*setup*] + missing environment variable \${SERVICE_GROUP}"
-#else
-#    echo "[-setup-] + using SERVICE_GROUP = ${SERVICE_GROUP}"
-#fi
-#
-#if [ "X" == "X${COMPONENT_NAME}" ]; then
-#    echo >&2 "[*setup*] + missing environment variable \${COMPONENT_NAME}"
-#else
-#    echo "[-setup-] + using COMPONENT_NAME = ${COMPONENT_NAME}"
-#fi
-#
-#if [ "X" == "X${COMPONENT_VERSION}" ]; then
-#    echo >&2 "[*setup*] + missing environment variable \${COMPONENT_VERSION}"
-#else
-#    echo "[-setup-] + using COMPONENT_VERSION = ${COMPONENT_VERSION}"
-#fi
-#
-#if [ "X" == "X${COMPONENT_INDEX}" ]; then
-#    echo >&2 "[*setup*] + missing environment variable \${COMPONENT_INDEX}"
-#else
-#    echo "[-setup-] + using COMPONENT_INDEX = ${COMPONENT_INDEX}"
-#fi
-#
-#if [ "X" == "X${COMPONENT_ACTION}" ]; then
-#    echo >&2 "[*setup*] + missing environment variable \${COMPONENT_ACTION}"
-#else
-#    echo "[-setup-] + using COMPONENT_ACTION = ${COMPONENT_ACTION}"
-#fi
-#
-#if [ "X" == "X${INSTALLER_REPOSITORY}" ]; then
-#    echo >&2 "[*setup*] + missing environment variable \${INSTALLER_REPOSITORY}"
-#else
-#    echo "[-setup-] + using INSTALLER_REPOSITORY = ${INSTALLER_REPOSITORY}"
-#fi
-#
-#if [ "X" == "X${INSTALLER_HOME_ROOT}" ]; then
-#    echo >&2 "[*setup*] + missing environment variable \${INSTALLER_HOME_ROOT}"
-#else
-#    echo "[-setup-] + using INSTALLER_HOME_ROOT = ${INSTALLER_HOME_ROOT}"
-#fi
-#
-#if [ "X" == "X${INSTALLER_CONFIG_ROOT}" ]; then
-#    echo >&2 "[*setup*] + missing environment variable \${INSTALLER_CONFIG_ROOT}"
-#else
-#    echo "[-setup-] + using INSTALLER_CONFIG_ROOT = ${INSTALLER_CONFIG_ROOT}"
-#fi
-#
-#if [ "X" == "X${INSTALLER_BASE_ROOT}" ]; then
-#    echo >&2 "[*setup*] + missing environment variable \${INSTALLER_BASE_ROOT}"
-#else
-#    echo "[-setup-] + using INSTALLER_BASE_ROOT = ${INSTALLER_BASE_ROOT}"
-#fi
 
 #
 # Calculate paths and build out the "installer" directory structure; the assumption
@@ -158,7 +86,9 @@ echo "[-setup-] Setting up service installer paths ..."
 #     init.sh.tmpl                            init.sh.tmpl                        "the installer master init script template"           ${INSTALLER_MASTER_INIT_TMPL}
 #     profile.sh.tmpl                         profile.sh.tmpl                     "the installer master profile template"               ${INSTALLER_MASTER_PROFILE_TMPL}
 #
+#     <component>.env                         jdk.env                             "an installer component properties file"              ${INSTALLER_COMPONENT_PROPERTIES}
 #     /<component>                            /jdk                                "an installer component directory"                    ${INSTALLER_COMPONENTDIR}
+#       <component>-<version>.env               jdk-1.6.0_33.env                  "an installer component version properties file"      ${INSTALLER_COMPONENT_VERSION_PROPERTIES}
 #       /<component>-<version>                  /jdk-1.6.0_33                     "an installer component version directory"            ${INSTALLER_COMPONENT_VERSIONDIR}
 #         init.sh.tmpl                            init.sh.tmpl                    "an installer component init script template"         ${INSTALLER_COMPONENT_INIT_TMPL}
 #         profile.sh.tmpl                         profile.sh.tmpl                 "an installer component profile template"             ${INSTALLER_COMPONENT_PROFILE_TMPL}
@@ -169,6 +99,7 @@ echo "[-setup-] Setting up service installer paths ..."
 #     /<service>                              /kuali                              "an installer service directory"                      ${INSTALLER_SERVICEDIR}
 #
 #       /properties                             /properties                       "an installer service properties directory"           ${INSTALLER_SERVICE_PROPDIR}
+#         <service>.env                           kuali.env                       "an installer service properties file"                ${INSTALLER_SERVICE_PROPERTIES}
 #         <service>-<environment>.env             kuali-dev.env                   "an installer service environment properties file"    ${INSTALLER_SERVICE_ENVIRONMENT_PROPERTIES}
 #
 #       /templates                              /templates                        "an installer service templates directory"            ${INSTALLER_SERVICE_TMPLDIR}
@@ -180,60 +111,51 @@ SERVICE_PREFIX=`echo ${SERVICE_NAME} | tr '[:lower:]' '[:upper:]'`
 COMPONENT_PREFIX=`echo ${COMPONENT_NAME} | tr '[:lower:]' '[:upper:]'`
 for x in SERVICE_PREFIX COMPONENT_PREFIX
 do
-    echo "[-setup-] + using ${x} = ${!x}"
+    [ ${!KSI_VERBOSE[@]} ] && echo "[-setup-] + using ${x} = ${!x}"
     export ${x}
 done
 
 INSTALLER_WORKDIR="${INSTALLER_REPOSITORY}"
 for x in INSTALLER_WORKDIR
 do
-    echo "[-setup-] + using ${x} = ${!x}"
+    [ ${!KSI_VERBOSE[@]} ] && echo "[-setup-] + using ${x} = ${!x}"
     export ${x}
 done
 
 INSTALLER_COMPONENTS="${INSTALLER_WORKDIR}/components"
 INSTALLER_MASTER_INIT_TMPL="${INSTALLER_COMPONENTS}/init.sh.tmpl"
 INSTALLER_MASTER_PROFILE_TMPL="${INSTALLER_COMPONENTS}/profile.sh.tmpl"
+INSTALLER_COMPONENT_PROPERTIES="${INSTALLER_COMPONENTS}/${COMPONENT_NAME}.env"
 INSTALLER_COMPONENTDIR="${INSTALLER_COMPONENTS}/${COMPONENT_NAME}"
+INSTALLER_COMPONENT_VERSION_PROPERTIES="${INSTALLER_COMPONENTDIR}/${COMPONENT_NAME}-${COMPONENT_VERSION}.env"
 INSTALLER_COMPONENT_VERSIONDIR="${INSTALLER_COMPONENTDIR}/${COMPONENT_NAME}-${COMPONENT_VERSION}"
 INSTALLER_COMPONENT_INIT_TMPL="${INSTALLER_COMPONENT_VERSIONDIR}/init.sh.tmpl"
 INSTALLER_COMPONENT_PROFILE_TMPL="${INSTALLER_COMPONENT_VERSIONDIR}/profile.sh.tmpl"
 INSTALLER_COMPONENT_ACTION="${INSTALLER_COMPONENT_VERSIONDIR}/_${COMPONENT_ACTION}.sh"
 for x in INSTALLER_COMPONENTS INSTALLER_MASTER_INIT_TMPL INSTALLER_MASTER_PROFILE_TMPL \
-         INSTALLER_COMPONENTDIR INSTALLER_COMPONENT_VERSIONDIR INSTALLER_COMPONENT_INIT_TMPL \
-         INSTALLER_COMPONENT_PROFILE_TMPL INSTALLER_COMPONENT_ACTION
+         INSTALLER_COMPONENT_PROPERTIES INSTALLER_COMPONENTDIR \
+         INSTALLER_COMPONENT_VERSION_PROPERTIES INSTALLER_COMPONENT_VERSIONDIR \
+         INSTALLER_COMPONENT_INIT_TMPL INSTALLER_COMPONENT_PROFILE_TMPL \
+         INSTALLER_COMPONENT_ACTION
 do
-    echo "[-setup-] + using ${x} = ${!x}"
+    [ ${!KSI_VERBOSE[@]} ] && echo "[-setup-] + using ${x} = ${!x}"
     export ${x}
 done
 
 INSTALLER_SERVICES="${INSTALLER_WORKDIR}/services"
 INSTALLER_SERVICEDIR="${INSTALLER_SERVICES}/${SERVICE_NAME}"
 INSTALLER_SERVICE_PROPDIR="${INSTALLER_SERVICEDIR}/properties"
+INSTALLER_SERVICE_PROPERTIES="${INSTALLER_SERVICE_PROPDIR}/${SERVICE_NAME}.env"
 INSTALLER_SERVICE_ENVIRONMENT_PROPERTIES="${INSTALLER_SERVICE_PROPDIR}/${SERVICE_NAME}-${SERVICE_ENVIRONMENT}.env"
 INSTALLER_SERVICE_TMPLDIR="${INSTALLER_SERVICEDIR}/templates"
 INSTALLER_SERVICE_COMPONENT_TMPLDIR="${INSTALLER_SERVICE_TMPLDIR}/${COMPONENT_NAME}"
-for x in INSTALLER_SERVICES INSTALLER_SERVICEDIR \
-         INSTALLER_SERVICE_PROPDIR INSTALLER_SERVICE_ENVIRONMENT_PROPERTIES \
+for x in INSTALLER_SERVICES INSTALLER_SERVICEDIR INSTALLER_SERVICE_PROPDIR \
+         INSTALLER_SERVICE_PROPERTIES INSTALLER_SERVICE_ENVIRONMENT_PROPERTIES \
          INSTALLER_SERVICE_TMPLDIR INSTALLER_SERVICE_COMPONENT_TMPLDIR
 do
-    echo "[-setup-] + using ${x} = ${!x}"
+    [ ${!KSI_VERBOSE[@]} ] && echo "[-setup-] + using ${x} = ${!x}"
     export ${x}
 done
-
-#
-# Set the root paths for the home, configuration, and base directory structures;
-# if these are visible in the invoking environment, override the defaults set here.
-
-if [ "X" == "X${INSTALLER_REPOSITORY}" ]; then
-    echo >&2 "[*setup*] + missing environment variable \${INSTALLER_REPOSITORY}"
-else
-    echo "[-setup-] + using INSTALLER_REPOSITORY = ${INSTALLER_REPOSITORY}"
-fi
-
-KSI_HOME_ROOT=/opt
-KSI_CONFIG_ROOT=/etc/opt
-KSI_BASE_ROOT=/var/opt
 
 #
 # Calculate paths and build out the "service home" directory structure: this usually
@@ -283,7 +205,7 @@ for x in SERVICE_HOME SERVICE_BUILDDIR \
          SERVICE_BUILDSRCDIR COMPONENT_BUILDSRCDIR COMPONENT_VERSION_BUILDDIR \
          COMPONENT_INSTALLDIR COMPONENT_VERSION_INSTALLDIR COMPONENT_HOME
 do
-    echo "[-setup-] + using ${x} = ${!x}"
+    [ ${!KSI_VERBOSE[@]} ] && echo "[-setup-] + using ${x} = ${!x}"
     export ${x}
 done
 
@@ -333,7 +255,7 @@ for x in SERVICE_CONFIG SERVICE_CONTROL_SCRIPT SERVICE_CONTROLDIR \
          SERVICE_MASTER_PROFILE SERVICE_PROFILEDIR COMPONENT_PROFILE \
          COMPONENT_CONFIGDIR COMPONENT_VERSION_CONFIGDIR COMPONENT_CONFIG
 do
-    echo "[-setup-] + using ${x} = ${!x}"
+    [ ${!KSI_VERBOSE[@]} ] && echo "[-setup-] + using ${x} = ${!x}"
     export ${x}
 done
     
@@ -365,7 +287,7 @@ COMPONENT_BASE="${SERVICE_BASE}/${COMPONENT_NAME}"
 COMPONENT_LOGS="${COMPONENT_BASE}/logs"
 for x in SERVICE_BASE COMPONENT_BASE COMPONENT_LOGS
 do
-    echo "[-setup-] + using ${x} = ${!x}"
+    [ ${!KSI_VERBOSE[@]} ] && echo "[-setup-] + using ${x} = ${!x}"
     export ${x}
 done
 
