@@ -1,0 +1,110 @@
+#
+# component init script for {{TOMCAT_THIS_INSTANCE}} tomcat-7.0.33
+#
+
+#
+# component environment
+
+{{TOMCAT_THIS_INSTANCE_PREFIX}}_TOMCAT_HOME={{COMPONENT_HOME}}
+{{TOMCAT_THIS_INSTANCE_PREFIX}}_TOMCAT_CONFIG={{COMPONENT_CONFIG}}
+{{TOMCAT_THIS_INSTANCE_PREFIX}}_TOMCAT_BASE={{COMPONENT_BASE}}
+{{TOMCAT_THIS_INSTANCE_PREFIX}}_TOMCAT_LOGS={{COMPONENT_LOGS}}
+
+#
+# functions
+
+tomcat_{{TOMCAT_THIS_INSTANCE}}_start () {
+    check_user_and_group
+    if check_process {{TOMCAT_INSTANCE_IDENTIFIER}}
+    then
+        echo "Tomcat application server tomcat_{{TOMCAT_THIS_INSTANCE}} is already running."
+        return;
+    else
+        echo "Starting Tomcat application server tomcat_{{TOMCAT_THIS_INSTANCE}} ..."
+        
+        CATALINA_HOME=${{{TOMCAT_THIS_INSTANCE_PREFIX}}_TOMCAT_HOME}
+        CATALINA_BASE=${{{TOMCAT_THIS_INSTANCE_PREFIX}}_TOMCAT_BASE}
+        export CATALINA_HOME CATALINA_BASE
+
+        $CATALINA_HOME/bin/startup.sh
+        sleep 1
+        if check_process {{TOMCAT_INSTANCE_IDENTIFIER}}
+        then
+            echo "Tomcat application server tomcat_{{TOMCAT_THIS_INSTANCE}} started."
+            return;
+        else
+            echo "Unable to start Tomcat application server tomcat_{{TOMCAT_THIS_INSTANCE}} -- check the logs!"
+        fi
+
+        unset CATALINA_HOME CATALINA_BASE
+
+        return;
+    fi
+}
+
+tomcat_{{TOMCAT_THIS_INSTANCE}}_stop() {
+    if check_process {{TOMCAT_INSTANCE_IDENTIFIER}}
+    then
+        echo "Stopping Tomcat application server tomcat_{{TOMCAT_THIS_INSTANCE}} ..."
+
+        CATALINA_HOME=${{{TOMCAT_THIS_INSTANCE_PREFIX}}_TOMCAT_HOME}
+        CATALINA_BASE=${{{TOMCAT_THIS_INSTANCE_PREFIX}}_TOMCAT_BASE}
+        export CATALINA_HOME CATALINA_BASE
+
+        $CATALINA_HOME/bin/shutdown.sh -force
+        sleep 3
+        if check_process {{TOMCAT_INSTANCE_IDENTIFIER}}
+        then
+            PIDS=`pgrep -f -d' ' {{TOMCAT_INSTANCE_IDENTIFIER}}`
+            echo "Unable to stop Tomcat application server tomcat_{{TOMCAT_THIS_INSTANCE}}: running PIDS are '$PIDS'."
+            return;
+        else
+            echo "Tomcat application server tomcat_{{TOMCAT_THIS_INSTANCE}} stopped."
+        fi
+
+        unset CATALINA_HOME CATALINA_BASE
+
+        return;
+    else
+        echo "Tomcat application server tomcat_{{TOMCAT_THIS_INSTANCE}} is already stopped."
+        return;
+    fi
+}
+
+tomcat_{{TOMCAT_THIS_INSTANCE}}_status () {
+    if check_process {{TOMCAT_INSTANCE_IDENTIFIER}}
+    then
+        PIDS=`pgrep -f -d' ' {{TOMCAT_INSTANCE_IDENTIFIER}}`
+        echo "Tomcat application server tomcat_{{TOMCAT_THIS_INSTANCE}} is running: PIDS are '$PIDS'."
+    else
+        echo "Tomcat application server tomcat_{{TOMCAT_THIS_INSTANCE}} is stopped."
+    fi
+    return;
+}
+
+tomcat_{{TOMCAT_THIS_INSTANCE}}_execute () {
+    case "$1" in
+
+    'start')
+           tomcat_{{TOMCAT_THIS_INSTANCE}}_start
+           exit 0
+           ;;
+    'stop')
+           tomcat_{{TOMCAT_THIS_INSTANCE}}_stop
+           exit 0
+           ;;
+    'restart')
+           tomcat_{{TOMCAT_THIS_INSTANCE}}_stop
+           tomcat_{{TOMCAT_THIS_INSTANCE}}_start
+           exit 0
+           ;;
+    'status')
+           tomcat_{{TOMCAT_THIS_INSTANCE}}_status
+           exit 0
+           ;;
+    *)
+           usage
+           exit 1
+           ;;
+    esac
+}

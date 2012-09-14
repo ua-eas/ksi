@@ -1,12 +1,16 @@
 #
 # component install script for jdk-1.6.0_33
 #
+# n.b. This install includes the third-party jtool.jar library,
+# which is distributed separately from the main JDK.
+#
 
 #
 # Globals.
 
 distfile="jdk-6u33-linux-x64.bin"
 unpacksto="jdk1.6.0_33"
+jtooljar="jtool-0.1-SNAPSHOT.jar"
 
 #
 # Make the component build and log directories.
@@ -46,6 +50,13 @@ cd ${thisdir}
 echo "[-install-] Moving to component home directory ..."
 mkdir -p ${COMPONENT_INSTALLDIR}
 mv ${COMPONENT_VERSION_BUILDDIR}/${unpacksto} ${COMPONENT_HOME}
+
+#
+# Add in local jtool library for service monitoring.
+
+echo "[-install-] Adding in local jtool library ..."
+mkdir -p ${COMPONENT_HOME}/local
+cp ${INSTALLER_COMPONENT_VERSIONDIR}/${jtooljar} ${COMPONENT_HOME}/local/jtool.jar
 
 #
 # Add component configuration.

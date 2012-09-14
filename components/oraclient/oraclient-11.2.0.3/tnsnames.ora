@@ -1,0 +1,3440 @@
+# TNSNAMES.ORA
+# **************************************************************************
+
+# **************************************************************************
+# --- Databases (DEV)
+APPDEVDB=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=appdevdb.mosaic.arizona.edu)
+    )
+  )
+
+APPDEVST=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=appdevst.mosaic.arizona.edu)
+    )
+  )
+
+DEVDB=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (FAILOVER=on)
+      (LOAD_BALANCE=on)
+      (SOURCE_ROUTE=off)
+      (ADDRESS=
+        (PROTOCOL=TCP)(HOST=uaz-dv-n12-vip.mosaic.arizona.edu)(PORT=1521))
+      (ADDRESS=
+        (PROTOCOL=TCP)(HOST=uaz-dv-n13-vip.mosaic.arizona.edu)(PORT=1521))
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=devdb.mosaic.arizona.edu)
+    )
+  )
+
+DEVST=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (FAILOVER=on)
+      (LOAD_BALANCE=on)
+      (SOURCE_ROUTE=off)
+      (ADDRESS=
+        (PROTOCOL=TCP)(HOST=uaz-dv-n12-vip.mosaic.arizona.edu)(PORT=1521))
+      (ADDRESS=
+        (PROTOCOL=TCP)(HOST=uaz-dv-n13-vip.mosaic.arizona.edu)(PORT=1521))
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=devst.mosaic.arizona.edu)
+    )
+  )
+
+#UAZBIPRD - Entries
+UAZBIPRD1 =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-ep-d50-vip.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=uazbiprd.mosaic.arizona.edu)
+      (INSTANCE_NAME=UAZBIPRD1)
+    )
+  )
+
+UAZBIPRD2 =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-ep-d51-vip.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=uazbiprd.mosaic.arizona.edu)
+      (INSTANCE_NAME=UAZBIPRD2)
+    )
+  )
+
+UAZBIPRD3 =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-hr-d50-vip.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=uazbiprd.mosaic.arizona.edu)
+      (INSTANCE_NAME=UAZBIPRD3)
+    )
+  )
+
+UAZBIPRD4 =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-hr-d51-vip.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=uazbiprd.mosaic.arizona.edu)
+      (INSTANCE_NAME=UAZBIPRD4)
+    )
+  )
+
+UAZBIPRD =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-ep-d50-vip.mosaic.arizona.edu)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-ep-d51-vip.mosaic.arizona.edu)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-hr-d50-vip.mosaic.arizona.edu)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-hr-d51-vip.mosaic.arizona.edu)(PORT = 1521))
+      (LOAD_BALANCE = yes)
+    )
+    (CONNECT_DATA =
+      (SERVER = dedicated)
+      (SERVICE_NAME = uazbiprd.mosaic.arizona.edu)
+      (FAILOVER_MODE =
+        (TYPE = select)
+        (METHOD = basic)
+      )
+    )
+  )
+#UAZBIPRD - END 
+
+#ELDEV Entries
+ELDEV=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=eldev.mosaic.arizona.edu)
+    )
+  )
+
+APPELDEV=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=eldev.mosaic.arizona.edu)
+    )
+  )
+
+UAZELDEV=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=eldev.mosaic.arizona.edu)
+    )
+  )
+#ELDEV Entries - END
+
+#ELDMO Entries
+ELDMO=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=eldmo.mosaic.arizona.edu)
+    )
+  )
+
+APPELDMO=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=eldmo.mosaic.arizona.edu)
+    )
+  )
+
+UAZELDMO=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=eldmo.mosaic.arizona.edu)
+    )
+  )
+#ELDMO Entries - END
+
+#EPDEV Entries
+EPDEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=epdev.mosaic.arizona.edu)
+    )
+  )
+
+APPEPDEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=epdev.mosaic.arizona.edu)
+    )
+  )
+
+UAZEPDEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=epdev.mosaic.arizona.edu)
+    )
+  )
+#EPDEV Entries - END
+
+#ETDEV Entries
+ETDEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=etdev.mosaic.arizona.edu)
+    )
+  )
+
+APPETDEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=etdev.mosaic.arizona.edu)
+    )
+  )
+
+UAZETDEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=etdev.mosaic.arizona.edu)
+    )
+  )
+
+#EPTEV Entries - END
+
+#EPDMO Entries
+EPDMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=epdmo.mosaic.arizona.edu)
+    )
+  )
+
+APPEPDMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=epdmo.mosaic.arizona.edu)
+    )
+  )
+
+UAZEPDMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=epdmo.mosaic.arizona.edu)
+    )
+  )
+#EPDMO Entries - END
+
+#HRCFG Entries
+HRCFG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrcfg.mosaic.arizona.edu)
+    )
+  )
+
+APPHRCFG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrcfg.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRCFG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrcfg.mosaic.arizona.edu)
+    )
+  )
+#HRCFG Entries - END
+
+#HRCNV Entries
+HRCNV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrcnv.mosaic.arizona.edu)
+    )
+  )
+
+APPHRCNV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrcnv.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRCNV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrcnv.mosaic.arizona.edu)
+    )
+  )
+#HRCNV Entries - END
+
+#HRDEV Entries
+HRDEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrdev.mosaic.arizona.edu)
+    )
+  )
+
+APPHRDEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrdev.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRDEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrdev.mosaic.arizona.edu)
+    )
+  )
+#HRDEV Entries - END
+
+#HRDM91 Entries
+HRDM91 =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrdm91.mosaic.arizona.edu)
+    )
+  )
+
+APPHRDM91 =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrdm91.mosaic.arizona.edu)
+    )
+  )
+
+UAHRDM91 =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrdm91.mosaic.arizona.edu)
+    )
+  )
+#HRDM91 Entries - END
+
+#HRDMO Entries
+HRDMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrdmo.mosaic.arizona.edu)
+    )
+  )
+
+APPHRDMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrdmo.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRDMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrdmo.mosaic.arizona.edu)
+    )
+  )
+#HRDMO Entries - END
+
+#HRSTG Entries
+HRSTG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrstg.mosaic.arizona.edu)
+    )
+  )
+
+APPHRSTG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrstg.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRSTG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrstg.mosaic.arizona.edu)
+    )
+  )
+#HRSTG Entries - END
+
+#HRTRN Entries
+HRTRN =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrtrn.mosaic.arizona.edu)
+    )
+  )
+
+APPHRTRN =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrtrn.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRTRN =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrtrn.mosaic.arizona.edu)
+    )
+  )
+#HRTRN Entries - END
+
+#HRTST Entries
+HRTST =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrtst.mosaic.arizona.edu)
+    )
+  )
+
+APPHRTST =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrtst.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRTST =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=hrtst.mosaic.arizona.edu)
+    )
+  )
+#HRTST Entries - END
+
+#KCCFG Entries
+KCCFG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kccfg.mosaic.arizona.edu)
+    )
+  )
+
+APPKCCFG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kccfg.mosaic.arizona.edu)
+    )
+  )
+
+UAZKCCFG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kccfg.mosaic.arizona.edu)
+    )
+  )
+#KCCFG Entries - END
+
+#KCCNV Entries
+KCCNV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kccnv.mosaic.arizona.edu)
+    )
+  )
+
+APPKCCNV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kccnv.mosaic.arizona.edu)
+    )
+  )
+
+UAZKCCNV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kccnv.mosaic.arizona.edu)
+    )
+  )
+#KCCNV Entries - END
+
+#KCDEV Entries
+KCDEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kcdev.mosaic.arizona.edu)
+    )
+  )
+
+APPKCDEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kcdev.mosaic.arizona.edu)
+    )
+  )
+
+UAZKCDEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kcdev.mosaic.arizona.edu)
+    )
+  )
+#KCDEV Entries - END
+
+#KCDMO Entries
+KCDMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kcdmo.mosaic.arizona.edu)
+    )
+  )
+
+APPKCDMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kcdmo.mosaic.arizona.edu)
+    )
+  )
+
+UAZKCDMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kcdmo.mosaic.arizona.edu)
+    )
+  )
+#KCDMO Entries - END
+
+#KCSTG Entries
+KCSTG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kcstg.mosaic.arizona.edu)
+    )
+  )
+
+APPKCSTG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kcstg.mosaic.arizona.edu)
+    )
+  )
+
+UAZKCSTG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kcstg.mosaic.arizona.edu)
+    )
+  )
+#KCSTG Entries - END
+
+#KCTRN Entries
+KCTRN =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kctrn.mosaic.arizona.edu)
+    )
+  )
+
+APPKCTRN =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kctrn.mosaic.arizona.edu)
+    )
+  )
+
+UAZKCTRN =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kctrn.mosaic.arizona.edu)
+    )
+  )
+#KCTRN Entries - END
+
+#KCTST Entries
+KCTST =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kctst.mosaic.arizona.edu)
+    )
+  )
+
+APPKCTST =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kctst.mosaic.arizona.edu)
+    )
+  )
+
+UAZKCTST =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kctst.mosaic.arizona.edu)
+    )
+  )
+#KCTST Entries - END
+
+#KFCFG Entries
+KFCFG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kfcfg.mosaic.arizona.edu)
+    )
+  )
+
+APPKFCFG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kfcfg.mosaic.arizona.edu)
+    )
+  )
+
+UAZKFCFG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kfcfg.mosaic.arizona.edu)
+    )
+  )
+#KFCFG Entries - END
+
+#KFCNV Entries
+KFCNV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kfcnv.mosaic.arizona.edu)
+    )
+  )
+
+APPKFCNV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kfcnv.mosaic.arizona.edu)
+    )
+  )
+
+UAZKFCNV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kfcnv.mosaic.arizona.edu)
+    )
+  )
+#KFCNV Entries - END
+
+#KFDEV Entries
+KFDEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kfdev.mosaic.arizona.edu)
+    )
+  )
+
+APPKFDEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kfdev.mosaic.arizona.edu)
+    )
+  )
+
+UAZKFDEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kfdev.mosaic.arizona.edu)
+    )
+  )
+#KFDEV Entries - END
+
+#KFDMO Entries
+KFDMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kfdmo.mosaic.arizona.edu)
+    )
+  )
+
+APPKFDMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kfdmo.mosaic.arizona.edu)
+    )
+  )
+
+UAZKFDMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kfdmo.mosaic.arizona.edu)
+    )
+  )
+#KFDMO Entries - END
+
+#KFSTG Entries
+KFSTG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kfstg.mosaic.arizona.edu)
+    )
+  )
+
+APPKFSTG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kfstg.mosaic.arizona.edu)
+    )
+  )
+
+UAZKFSTG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kfstg.mosaic.arizona.edu)
+    )
+  )
+#KFSTG Entries - END
+
+#KFTR2 Entries
+KFTR2 =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kftr2.mosaic.arizona.edu)
+    )
+  )
+
+APPKFTR2 =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kftr2.mosaic.arizona.edu)
+    )
+  )
+
+UAZKFTR2 =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kftr2.mosaic.arizona.edu)
+    )
+  )
+#KFTR2 Entries - END
+
+#KFTST Entries
+KFTST =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kftst.mosaic.arizona.edu)
+    )
+  )
+
+APPKFTST =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kftst.mosaic.arizona.edu)
+    )
+  )
+
+UAZKFTST =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kftst.mosaic.arizona.edu)
+    )
+  )
+#KFTST Entries - END
+
+#KFTRN Entries
+KFTRN =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kftrn.mosaic.arizona.edu)
+    )
+  )
+
+APPKFTRN =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kftrn.mosaic.arizona.edu)
+    )
+  )
+
+UAZKFTRN =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=kftrn.mosaic.arizona.edu)
+    )
+  )
+#KFTRN Entries - END
+
+#PADMO Entries
+PADMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=padmo.mosaic.arizona.edu)
+    )
+  )
+
+APPPADMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=padmo.mosaic.arizona.edu)
+    )
+  )
+
+UAZPADMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=padmo.mosaic.arizona.edu)
+    )
+  )
+#PADMO Entries- END
+
+#SACFG Entries
+SACFG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sacfg.mosaic.arizona.edu)
+    )
+  )
+
+APPSACFG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sacfg.mosaic.arizona.edu)
+    )
+  )
+
+UAZSACFG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sacfg.mosaic.arizona.edu)
+    )
+  )
+#SACFG Entries- END
+
+#SACNV Entries
+SACNV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sacnv.mosaic.arizona.edu)
+    )
+  )
+
+APPSACNV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sacnv.mosaic.arizona.edu)
+    )
+  )
+
+UAZSACNV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sacnv.mosaic.arizona.edu)
+    )
+  )
+#SACNV Entries- END
+
+#SADEV Entries
+SADEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sadev.mosaic.arizona.edu)
+    )
+  )
+
+APPSADEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sadev.mosaic.arizona.edu)
+    )
+  )
+
+UAZSADEV =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sadev.mosaic.arizona.edu)
+    )
+  )
+#SADEV Entries- END
+
+#SADM2 Entries
+SADM2 =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sadm2.mosaic.arizona.edu)
+    )
+  )
+
+APPSADM2 =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sadm2.mosaic.arizona.edu)
+    )
+  )
+
+UAZSADM2 =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sadm2.mosaic.arizona.edu)
+    )
+  )
+#SADM2 Entries- END
+
+#SADMO Entries
+SADMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sadmo.mosaic.arizona.edu)
+    )
+  )
+
+APPSADMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sadmo.mosaic.arizona.edu)
+    )
+  )
+
+UAZSADMO =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sadmo.mosaic.arizona.edu)
+    )
+  )
+#SADMO Entries- END
+
+#SASTG Entries
+SASTG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sastg.mosaic.arizona.edu)
+    )
+  )
+
+APPSASTG =
+  (DESCRIPTION=
+    (ADDRESS=
+     (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sastg.mosaic.arizona.edu)
+    )
+  )
+
+UAZSASTG =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sastg.mosaic.arizona.edu)
+    )
+  )
+#SASTG Entries - END
+
+#SATRN Entries
+SATRN =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=satrn.mosaic.arizona.edu)
+    )
+  )
+
+APPSATRN =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=satrn.mosaic.arizona.edu)
+    )
+  )
+
+UAZSATRN =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=satrn.mosaic.arizona.edu)
+    )
+  )
+#SATRN Entries - END
+
+#SATST Entries
+SATST =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=satst.mosaic.arizona.edu)
+    )
+  )
+
+APPSATST =
+  (DESCRIPTION=
+    (ADDRESS=
+     (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=satst.mosaic.arizona.edu)
+    )
+  )
+
+UAZSATST =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=satst.mosaic.arizona.edu)
+    )
+  )
+#SATST Entries - END
+
+#SOREP Entries
+SOREP =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sorep.mosaic.arizona.edu)
+    )
+  )
+
+APPSOREP =
+  (DESCRIPTION=
+    (ADDRESS=
+     (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sorep.mosaic.arizona.edu)
+    )
+  )
+
+UAZSOREP =
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=sorep.mosaic.arizona.edu)
+    )
+  )
+#SOREP Entries - END
+
+UAZDEVDB=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=uazdevdb.mosaic.arizona.edu)
+    )
+  )
+
+UAZDEVST=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-dv-scan-01.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=uazdevst.mosaic.arizona.edu)
+    )
+  )
+
+
+# **************************************************************************
+# --- Databases (SUP)
+
+
+# **************************************************************************
+# --- Databases (PRD)
+
+
+# **************************************************************************
+# --- Databases (Utility)
+EMREP=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-em-d02.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=emrep.mosaic.arizona.edu)
+    )
+  )
+
+RMAN=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)(HOST=uaz-em-d02.mosaic.arizona.edu)(PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=rman)
+    )
+  )
+
+# **************************************************************************
+# **************************************************************************
+# ---------- ANYTHING BELOW THIS LINE NEEDS TO BE REVIEWED ----------
+# ---------- (please move above line after verification)   ----------
+UAZMGC=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-em-d05.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZMGC.mosaic.arizona.edu)
+    )
+  )
+
+EPETL=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=yes)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=ep_etl.mosaic.arizona.edu)
+    )
+  )
+
+EPOBI=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=yes)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=ep_obi.mosaic.arizona.edu)
+    )
+  )
+
+HROBI=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=yes)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=hr_obi.mosaic.arizona.edu)
+    )
+  )
+
+SAOBI=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=yes)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=sa_obi.mosaic.arizona.edu)
+    )
+  )
+
+SAPRDGEN=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=on)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=sa_gen.mosaic.arizona.edu)
+    )
+  )
+
+UAZSAPRD1=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-ep-d50-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZSAPRD1)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSAPRD.mosaic.arizona.edu)
+    )
+  )
+
+UAZSAPRD3=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-hr-d50-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZSAPRD3)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSAPRD.mosaic.arizona.edu)
+    )
+  )
+
+UAZSAPRD4=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-hr-d51-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZSAPRD4)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSAPRD.mosaic.arizona.edu)
+    )
+  )
+
+UAZSAPRD5=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-sa-d50-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZSAPRD5)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSAPRD.mosaic.arizona.edu)
+    )
+  )
+
+UAZSAPRD6=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-sa-d51-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZSAPRD6)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSAPRD.mosaic.arizona.edu)
+    )
+  )
+
+SARPTGEN=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=on)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-kf-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=rp_gen.mosaic.arizona.edu)
+    )
+  )
+
+SASUPGEN=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=on)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-kf-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=sa_gen.mosaic.arizona.edu)
+    )
+  )
+
+KCSUPGEN=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=on)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-kf-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=kc_gen.mosaic.arizona.edu)
+    )
+  )
+
+UAZSARPT=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=on)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-kf-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=uazsarpt.mosaic.arizona.edu)
+    )
+  )
+
+UAZSASUP=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=on)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-kf-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=uazsasup.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRSUP=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=on)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-kf-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=uazhrsup.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRSUP1 =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=on)
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-ep-d25-vip.mosaic.arizona.edu) (PORT=1521))
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-hr-d25-vip.mosaic.arizona.edu) (PORT=1521))
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-kf-d25-vip.mosaic.arizona.edu) (PORT=1521))
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-sa-d25-vip.mosaic.arizona.edu) (PORT=1521))
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZHRSUP1)
+      (SERVER=dedicated)
+      (SERVICE_NAME=uazhrsup.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRSUP2 =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=on)
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-ep-d25-vip.mosaic.arizona.edu) (PORT=1521))
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-hr-d25-vip.mosaic.arizona.edu) (PORT=1521))
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-kf-d25-vip.mosaic.arizona.edu) (PORT=1521))
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-sa-d25-vip.mosaic.arizona.edu) (PORT=1521))
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZHRSUP2)
+      (SERVER=dedicated)
+      (SERVICE_NAME=uazhrsup.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRSUP3 =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=on)
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-ep-d25-vip.mosaic.arizona.edu) (PORT=1521))
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-hr-d25-vip.mosaic.arizona.edu) (PORT=1521))
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-kf-d25-vip.mosaic.arizona.edu) (PORT=1521))
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-sa-d25-vip.mosaic.arizona.edu) (PORT=1521))
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZHRSUP3)
+      (SERVER=dedicated)
+      (SERVICE_NAME=uazhrsup.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRSUP4 =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=on)
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-ep-d25-vip.mosaic.arizona.edu) (PORT=1521))
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-hr-d25-vip.mosaic.arizona.edu) (PORT=1521))
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-kf-d25-vip.mosaic.arizona.edu) (PORT=1521))
+      (ADDRESS= (PROTOCOL=TCP) (HOST=uaz-sa-d25-vip.mosaic.arizona.edu) (PORT=1521))
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZHRSUP4)
+      (SERVER=dedicated)
+      (SERVICE_NAME=uazhrsup.mosaic.arizona.edu)
+    )
+  )
+
+HRSUPGEN=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=on)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-kf-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=hr_gen.mosaic.arizona.edu)
+    )
+  )
+
+HRSUTGEN=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-hr-d25-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=sa_sut.mosaic.arizona.edu)
+    )
+  )
+
+GROUPER=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=candi.uits.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=grouper.uits.arizona.edu)
+    )
+  )
+
+IWO_02=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=DWEEZIL.CCIT.ARIZONA.EDU)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SID=IWO_02)
+    )
+  )
+
+EPPRDGEN=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=on)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=ep_gen.mosaic.arizona.edu)
+    )
+  )
+
+UAZEPPRD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=on)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=ep_gen.mosaic.arizona.edu)
+    )
+  )
+
+EPPRDHR=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (LOAD_BALANCE=on)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=ep_hr.mosaic.arizona.edu)
+    )
+  )
+
+EPPRDPRC=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (FAILOVER=on)
+      (LOAD_BALANCE=on)
+      (SOURCE_ROUTE=off)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=ep_prc.mosaic.arizona.edu)
+    )
+  )
+
+EPPRDOBI=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (FAILOVER=on)
+      (LOAD_BALANCE=on)
+      (SOURCE_ROUTE=off)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=ep_obi.mosaic.arizona.edu)
+    )
+  )
+
+UAZEPPRD1=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-ep-d50-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZEPPRD1)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZEPPRD.mosaic.arizona.edu)
+    )
+  )
+
+UAZEPPRD2=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-ep-d51-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZEPPRD2)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZEPPRD.mosaic.arizona.edu)
+    )
+  )
+
+UAZEPPRD3=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-hr-d50-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZEPPRD3)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZEPPRD.mosaic.arizona.edu)
+    )
+  )
+
+UAZEPPRD4=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-hr-d51-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZEPPRD4)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZEPPRD.mosaic.arizona.edu)
+    )
+  )
+
+UAZEPTST=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-ep-d05.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVICE_NAME=UAZEPTST)
+    )
+  )
+
+HRPRDGEN=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (FAILOVER=on)
+      (LOAD_BALANCE=on)
+      (SOURCE_ROUTE=off)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=hr_gen.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRUDM=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-hr-d25.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZHRUDM)
+    )
+  )
+
+UAZHRUDV=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-hr-d25.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZHRUDV)
+    )
+  )
+
+UAZHRUTS=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-hr-d25.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZHRUTS)
+    )
+  )
+
+UAZSAUTS=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-sa-d25.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSAUTS)
+    )
+  )
+
+UAZHRUTR=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-hr-d25.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZHRUTR)
+    )
+  )
+
+UAZSAUTR=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-sa-d25.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSAUTR)
+    )
+  )
+
+EPSUPOBI=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (FAILOVER=on)
+      (LOAD_BALANCE=on)
+      (SOURCE_ROUTE=off)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-kf-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=ep_obi.mosaic.arizona.edu)
+    )
+  )
+
+EPSUPGEN=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (FAILOVER=on)
+      (LOAD_BALANCE=on)
+      (SOURCE_ROUTE=off)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-kf-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=ep_gen.mosaic.arizona.edu)
+    )
+  )
+  
+UAZEPSUP1=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZEPSUP1)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZEPSUP.mosaic.arizona.edu)
+    )
+  )
+
+UAZEPSUP2=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-hr-d25-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZEPSUP2)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZEPSUP.mosaic.arizona.edu)
+    )
+  )
+  
+UAZEPSUP3=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-kf-d25-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZEPSUP3)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZEPSUP.mosaic.arizona.edu)
+    )
+  )
+  
+UAZEPSUP4=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-sa-d25-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZEPSUP4)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZEPSUP.mosaic.arizona.edu)
+    )
+  )
+
+HRSUPPRC=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (FAILOVER=on)
+      (LOAD_BALANCE=on)
+      (SOURCE_ROUTE=off)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-kf-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=hr_prc.mosaic.arizona.edu)
+    )
+  )
+
+UAZHYDEV=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-ep-d02.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZHYDEV.REGRESS.RDBMS.DEV.US.ORACLE.COM)
+    )
+  )
+
+UAZHYDMO=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-ep-d01.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZHYDMO.mosaic.arizona.edu)
+    )
+  )
+
+UAZHYRES=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-ep-d01.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZHYRES)
+    )
+  )
+
+UAZHYTST=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-ep-d05.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZHYTST)
+    )
+  )
+
+UAZSAPSB=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-hr-d25.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SID=UAZSAPSB)
+    )
+  )
+
+UAZSODEV=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-so-d02.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSODEV)
+    )
+  )
+
+UAZSOTST=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-so-d05.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSOTST)
+    )
+  )
+
+UAZSOPRD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+       (ADDRESS=(PROTOCOL=TCP)(HOST=uaz-ep-d50.mosaic.arizona.edu)(PORT=1521))
+       (ADDRESS=(PROTOCOL=TCP)(HOST=uaz-sa-d51.mosaic.arizona.edu)(PORT=1521))
+    )
+    (CONNECT_DATA=
+       (SERVER=DEDICATED)
+       (SERVICE_NAME=UAZSOPRD.mosaic.arizona.edu)
+    )
+  )
+
+UAZSOPRD6=
+  (DESCRIPTION=
+    (ADDRESS=(PROTOCOL = TCP)(HOST = uaz-sa-d51-vip)(PORT=1521))
+    (CONNECT_DATA=
+      (SERVER=DEDICATED)
+      (SERVICE_NAME=UAZSOPRD.mosaic.arizona.edu)
+      (INSTANCE_NAME=UAZSOPRD6)
+    )
+  )
+
+UAZSOPRD1=
+  (DESCRIPTION=
+    (ADDRESS=(PROTOCOL=TCP)(HOST=uaz-ep-d50-vip)(PORT=1521))
+    (CONNECT_DATA=
+      (SERVER=DEDICATED)
+      (SERVICE_NAME=UAZSOPRD.mosaic.arizona.edu)
+      (INSTANCE_NAME=UAZSOPRD1)
+    )
+  )
+
+###############################################################################
+## Entries below came from Haroled Caldwell. Added by Ahmed on 04/03/09 at 5p #
+###############################################################################
+
+DATA2=
+  (DESCRIPTION=
+    (ADDRESS=
+      (COMMUNITY=TCP_COM.world)
+      (PROTOCOL=TCP)
+      (HOST=N252.data.arizona.edu)
+      (PORT=1527)
+    )
+    (CONNECT_DATA=
+      (SID=UISOCI)
+    )
+  )
+
+DAPSOCII=
+  (DESCRIPTION=
+    (ADDRESS=
+      (COMMUNITY=TCP_COM.world)
+      (PROTOCOL=TCP)
+      (HOST=cluster.data.arizona.edu)
+      (PORT=1527)
+    )
+    (CONNECT_DATA=
+      (SID=DAPSOCI)
+    )
+  )
+
+UISOCI=
+  (DESCRIPTION=
+    (ADDRESS=
+      (COMMUNITY=TCP_COM.world)
+      (PROTOCOL=TCP)
+      (HOST=cluster.data.arizona.edu)
+      (PORT=1527)
+    )
+    (CONNECT_DATA=
+      (SID=UISOCI)
+    )
+  )
+
+DAPSOCI=
+  (DESCRIPTION=
+    (ADDRESS=
+      (COMMUNITY=TCP_COM.world)
+      (PROTOCOL=TCP)
+      (HOST=data.daps.arizona.edu)
+      (PORT=1527)
+    )
+    (CONNECT_DATA=
+      (SID=DAPSOCI)
+    )
+  )
+
+IMPOUNDOCI=
+  (DESCRIPTION=
+    (ADDRESS=
+      (COMMUNITY=TCP_COM.world)
+      (PROTOCOL=TCP)
+      (HOST=data.daps.arizona.edu)
+      (PORT=1527)
+    )
+    (CONNECT_DATA=
+      (SID=IMPOUNDOCI)
+    )
+  )
+
+DAPSOCIW=
+  (DESCRIPTION=
+    (ADDRESS=
+      (COMMUNITY=TCP_COM.world)
+      (PROTOCOL=TCP)
+      (HOST=150.135.236.62)
+      (PORT=1527)
+    )
+    (CONNECT_DATA=
+      (SID=DAPSOCI)
+    )
+  )
+
+DAPSW=
+  (DESCRIPTION=
+    (ADDRESS=
+      (COMMUNITY=TCP_COM.world)
+      (PROTOCOL=TCP)
+      (HOST=150.135.236.62)
+      (PORT=1730)
+    )
+    (CONNECT_DATA=
+      (SID=DAPS)
+    )
+  )
+
+IMPOUNDOCIW=
+  (DESCRIPTION=
+    (ADDRESS=
+      (COMMUNITY=TCP_COM.world)
+      (PROTOCOL=TCP)
+      (HOST=150.135.236.62)
+      (PORT=1527)
+    )
+    (CONNECT_DATA=
+      (SID=IMPOUNDOCI)
+    )
+  )
+
+ORAUIS=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=n247.data.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=ORAUIS)
+    )
+  )
+
+UIS.ARIZONA.EDU=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=data4.data.arizona.edu)
+      (PORT=1527)
+    )
+    (CONNECT_DATA=
+      (SID=UISOCI)
+    )
+  )
+
+###############################################################################
+#### Entries below came from Earl Spencer. Added by Ahmed on 5/11/09 ##########
+###############################################################################
+
+N244DBLINK=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=N244.DATA.ARIZONA.EDU)
+      (PORT=1527)
+    )
+    (CONNECT_DATA=
+      (SERVICE_NAME=N244DBLINK)
+    )
+  )
+
+IIW3DBLINK=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=IIW3.DAPS.ARIZONA.EDU)
+      (PORT=1527)
+    )
+    (CONNECT_DATA=
+      (SERVICE_NAME=IIW3DBLINK)
+    )
+  )
+
+IIW4DBLINK=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=IIW4.DAPS.ARIZONA.EDU)
+      (PORT=1527)
+    )
+    (CONNECT_DATA=
+      (SERVICE_NAME=IIW4DBLINK)
+    )
+  )
+
+IIW5DBLINK=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=IIW5.DAPS.ARIZONA.EDU)
+      (PORT=1527)
+    )
+    (CONNECT_DATA=
+      (SERVICE_NAME=IIW5DBLINK)
+    )
+  )
+
+N245DBLINK=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=N245.DATA.ARIZONA.EDU)
+      (PORT=1527)
+    )
+    (CONNECT_DATA=
+      (SERVICE_NAME=N245DBLINK)
+    )
+  )
+
+N246DBLINK=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=N246.DATA.ARIZONA.EDU)
+      (PORT=1527)
+    )
+    (CONNECT_DATA=
+      (SERVICE_NAME=N246DBLINK)
+    )
+  )
+
+N248DBLINK=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=N248.DATA.ARIZONA.EDU)
+      (PORT=1527)
+    )
+    (CONNECT_DATA=
+      (SERVICE_NAME=N248DBLINK)
+    )
+  )
+
+###############################################################################
+## Entries below came from Ignacio thru Cheryl P. Added by Ahmed on 6/03/09 ###
+###############################################################################
+
+IWO_02=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=DWEEZIL.CCIT.ARIZONA.EDU)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVICE_NAME=IWO_02)
+    )
+  )
+
+###############################################################################
+## Entries below came from CindyCamp for EmpLink. Added by Ahmed on 7/09/09 ###
+###############################################################################
+
+EMPLINKTEST=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=dbsrv.ccit.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=PORTAL.CCIT.ARIZONA.EDU)
+    )
+  )
+
+UAZHRSYS=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-pa-d01.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZHRSYS)
+    )
+  )
+
+UAZHRPRD1=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-ep-d50-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZHRPRD1)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZHRPRD.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRPRD2=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-ep-d51-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZHRPRD2)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZHRPRD.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRPRD3=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-hr-d50-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZHRPRD3)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZHRPRD.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRPRD4=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-hr-d51-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZHRPRD4)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZHRPRD.mosaic.arizona.edu)
+    )
+  )
+
+HRPRDPRC=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (FAILOVER=on)
+      (LOAD_BALANCE=on)
+      (SOURCE_ROUTE=off)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d50-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d51-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (FAILOVER_MODE=
+        (TYPE=session)
+        (METHOD=basic)
+      )
+      (SERVER=dedicated)
+      (SERVICE_NAME=hr_prc.mosaic.arizona.edu)
+    )
+  )
+
+UAZSACN3=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-sa-d25.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SID=UAZSACN3)
+    )
+  )
+
+UAZSASUP1=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZSASUP1)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSASUP.mosaic.arizona.edu)
+    )
+  )
+
+UAZSASUP2=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-hr-d25-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZSASUP2)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSASUP.mosaic.arizona.edu)
+    )
+  )
+
+UAZSASUP3=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-kf-d25-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZSASUP3)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSASUP.mosaic.arizona.edu)
+    )
+  )
+
+UAZSASUP4=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-sa-d25-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZSASUP4)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSASUP.mosaic.arizona.edu)
+    )
+  )
+
+UAZHRDBA2=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d25.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d25.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-kf-d25.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d25.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZHRDBA2)
+    )
+  )
+
+UAZACDEV =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = pisa.uits.arizona.edu)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = UAZACDEV.mosaic.arizona.edu)
+    )
+  )
+
+UAZACPRD =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = candi.uits.arizona.edu)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = acprod.uits.arizona.edu)
+    )
+  )
+
+#ETSUPGEN =
+#  (DESCRIPTION =
+#    (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-ep-d25-vip.mosaic.arizona.edu)(PORT = 1521))
+#    (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-hr-d25-vip.mosaic.arizona.edu)(PORT = 1521))
+#    (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-kf-d25-vip.mosaic.arizona.edu)(PORT = 1521))
+#    (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-sa-d25-vip.mosaic.arizona.edu)(PORT = 1521))
+#    (LOAD_BALANCE = yes)
+#    (CONNECT_DATA =
+#      (SERVER = DEDICATED)
+#      (SERVICE_NAME = et_gen.mosaic.arizona.edu)
+#    )
+#  )
+
+UAZETSUP=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SID=UAZETSUP)
+      (SERVER=dedicated)
+    )
+  )
+
+KCPRDGEN =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-ep-d50-vip.mosaic.arizona.edu)(PORT = 1521))
+    (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-ep-d51-vip.mosaic.arizona.edu)(PORT = 1521))
+    (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-hr-d50-vip.mosaic.arizona.edu)(PORT = 1521))
+    (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-hr-d51-vip.mosaic.arizona.edu)(PORT = 1521))
+    (LOAD_BALANCE = yes)
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = kc_gen.mosaic.arizona.edu)
+    )
+  )
+
+UAZLMDMO =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-hr-d00.mosaic.arizona.edu)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = UAZLMDMO)
+    )
+  )
+
+UAZSAUDV=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-sa-d25.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSAUDV)
+    )
+  )
+
+ETSUPGEN =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-ep-d25-vip.mosaic.arizona.edu)(PORT = 1521))
+    (LOAD_BALANCE = yes)
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = et_gen.mosaic.arizona.edu)
+    )
+  )
+
+UAZETPRD =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-ep-d50.mosaic.arizona.edu)(PORT = 1521))
+    (LOAD_BALANCE = yes)
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = uazetprd.mosaic.arizona.edu)
+    )
+  )
+
+UAZKFSUP =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-ep-d25-vip.mosaic.arizona.edu)(PORT = 1521))
+    (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-hr-d25-vip.mosaic.arizona.edu)(PORT = 1521))
+    (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-kf-d25-vip.mosaic.arizona.edu)(PORT = 1521))
+    (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-sa-d25-vip.mosaic.arizona.edu)(PORT = 1521))
+    (LOAD_BALANCE = yes)
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = UAZKFSUP.mosaic.arizona.edu)
+    )
+  )
+
+
+UAZKFPRD = 
+  (DESCRIPTION = 
+    (ADDRESS_LIST = 
+      (LOAD_BALANCE = yes) 
+     (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-ep-d50-vip.mosaic.arizona.edu)(PORT = 1521)) 
+     (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-ep-d51-vip.mosaic.arizona.edu)(PORT = 1521)) 
+     (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-sa-d50-vip.mosaic.arizona.edu)(PORT = 1521)) 
+     (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-sa-d51-vip.mosaic.arizona.edu)(PORT = 1521)) 
+    ) 
+    (CONNECT_DATA = 
+      (SERVER = DEDICATED) 
+      (SERVICE_NAME = UAZKFPRD.mosaic.arizona.edu)(UR=A) 
+    ) 
+  ) 
+
+KFPRDGEN =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (LOAD_BALANCE = yes)
+      (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-ep-d50-vip.mosaic.arizona.edu)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-ep-d51-vip.mosaic.arizona.edu)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-sa-d50-vip.mosaic.arizona.edu)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = uaz-sa-d51-vip.mosaic.arizona.edu)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = kf_gen.mosaic.arizona.edu)
+    )
+  )
+
+EPPRDEAP =
+ (DESCRIPTION=
+   (ADDRESS=
+     (PROTOCOL= TCP)
+     (HOST=uaz-ep-d50.mosaic.arizona.edu)
+     (PORT=1526)
+   )
+   (CONNECT_DATA=
+     (SERVER=dedicated)
+     (SERVICE_NAME=UAZEPPRD.mosaic.arizona.edu)
+   )
+ )
+ 
+UAZKFSUT=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (FAILOVER=on)
+      (LOAD_BALANCE=on)
+      (SOURCE_ROUTE=off)
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-hr-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-kf-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=uaz-sa-d25-vip.mosaic.arizona.edu)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZKFSUT.mosaic.arizona.edu)
+    )
+  )
+  
+UAZKFSUT1=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZKFSUT1)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZKFSUT.mosaic.arizona.edu)
+    )
+  )
+  
+UAZKFSUT2=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-hr-d25-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZKFSUT2)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZKFSUT.mosaic.arizona.edu)
+    )
+  )
+ 
+UAZKFSUT3=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-kf-d25-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZKFSUT3)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZKFSUT.mosaic.arizona.edu)
+    )
+  )
+  
+UAZKFSUT4=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-sa-d25-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (INSTANCE_NAME=UAZKFSUT4)
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZKFSUT.mosaic.arizona.edu)
+    )
+  )
+
+#########################################################
+# Pinnacle Application Entries
+#########################################################
+PINNDEV  =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = tina.ccit.arizona.edu)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = DEV)
+    )
+  )
+  
+PINNSCRATCH =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = tina.ccit.arizona.edu)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = SCRATCH)
+    )
+  )
+
+PINNPROD =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = trish.ccit.arizona.edu)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = PROD)
+    )
+  )
+
+PINNTRNG =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = trish.ccit.arizona.edu)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = TRNG)
+    )
+  )
+
+PINNTEST =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = tina.ccit.arizona.edu)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = TEST)
+    )
+  )
+
+PINNUITS =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = tina.ccit.arizona.edu)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = PINNUITS)
+    )
+  ) 
+
+# -- entries that were on OEM but not the "master"
+EPSUPTST=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (FAILOVER=on)
+      (LOAD_BALANCE=on)
+      (SOURCE_ROUTE=off)
+      (ADDRESS=(PROTOCOL=TCP)(HOST=uaz-ep-d25-vip.mosaic.arizona.edu)(PORT=1521))
+    )
+    (CONNECT_DATA=
+      (FAILOVER_MODE=
+        (TYPE=select)
+        (METHOD=basic)
+      )
+      (SERVER=dedicated)
+      (SERVICE_NAME=bp_tst.mosaic.arizona.edu)
+    )
+  )
+
+GRPRTEST =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = candi.uits.arizona.edu)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = grprtest.uits.arizona.edu)
+    )
+  )
+
+REMTEST =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = candi.uits.arizona.edu)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = remtest.uits.arizona.edu)
+    )
+  )
+
+REMPROD =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = candi.uits.arizona.edu)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = remprod.uits.arizona.edu)
+    )
+  )
+
+UAZSATM0=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-dv-n10.mosaic.arizona.edu)
+      (PORT=1523)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSATMP)
+    )
+  )
+
+UAZSATM1=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-dv-n11.mosaic.arizona.edu)
+      (PORT=1523)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=UAZSATMP)
+    )
+  )
+
+SCORPIO =
+  (DESCRIPTION =
+        (ADDRESS = (PROTOCOL = TCP)(HOST = budget7.budgetoffice.arizona.edu)(PORT = 1521))
+        (CONNECT_DATA =
+                (SERVER = DEDICATED)
+                (SERVICE_NAME = SCORPIO)
+        )
+  )
+
+PINNDEV  =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = tina.ccit.arizona.edu)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = DEV)
+    )
+  )
+
+UAZETSP2=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=uaz-ep-d25-vip.mosaic.arizona.edu)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SID=UAZETSP2)
+      (SERVER=dedicated)
+    )
+  )
+

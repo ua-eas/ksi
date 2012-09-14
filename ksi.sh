@@ -107,9 +107,14 @@ if [ "X" == "X${action}" ]; then
 fi
 
 if [ ${usage} == "yes" ]; then
-    echo >&2 "usage: $0 -s [service] -e [environment] -c [component] -v [version] -i [index] -a [action]"
+    echo >&2 "usage: $0 -s <service> -e <environment> -c <component> -v <version> -i <index> -a <action> [-x <extra>]"
     exit 1
 fi
+
+#
+# consume all processed arguments, leaving only "extras" for action scripts
+
+shift $(($OPTIND - 1))
 
 #
 # mark top of run
