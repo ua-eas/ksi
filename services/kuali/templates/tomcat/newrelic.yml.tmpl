@@ -31,7 +31,7 @@ dev:
 tst:
   <<: *default_settings
   app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Test)
-  agent_enabled: false
+  agent_enabled: true
 
 stg:
   <<: *default_settings
@@ -46,4 +46,4 @@ prd:
 sup:
   <<: *default_settings
   app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Support)
-  agent_enabled: false
+  agent_enabled: true

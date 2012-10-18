@@ -45,15 +45,18 @@ echo "[-install-] Adding javamail library ..."
 cp ${INSTALLER_COMPONENT_VERSIONDIR}/${mailjar} ${COMPONENT_HOME}/lib
 
 #
-# Clean up home, saving base content for later use in creating new instances.
+# Clean up home, saving manager app for later use by individual instances.
 
 echo "[-install-] Cleaning up home directory ..."
 thisdir=`pwd`
 cd ${COMPONENT_HOME}
+mv webapps/manager ./manager
 for x in conf logs temp webapps work
 do
      rm -rf ${x}
 done
+mkdir webapps
+mv ./manager webapps/manager
 cd ${thisdir}
 
 #

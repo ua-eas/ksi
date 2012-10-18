@@ -44,8 +44,6 @@ echo "[-mkinst-] Copying instance-specific environment into generic Tomcat templ
 for x in TOMCAT_INSTANCE_IDENTIFIER \
          TOMCAT_SHUTDOWN_PORT TOMCAT_HTTP_PORT TOMCAT_AJP_PORT \
          TOMCAT_PROXY_NAME TOMCAT_JVM_ROUTE \
-         TOMCAT_CLUSTER_MCAST_IPADDR TOMCAT_CLUSTER_MCAST_PORT \
-         TOMCAT_CLUSTER_RECV_PORT \
          TOMCAT_CATALINA_OPTS \
          TOMCAT_NEWRELIC_APPNAME
 do
@@ -90,10 +88,14 @@ echo "[-mkinst-] Creating configuration files for this instance ..."
 
 for x in catalina.policy catalina.properties \
          context.xml logging.properties \
-         server.xml web.xml
+         server.xml tomcat-users.xml web.xml
 do
     process_template ${INSTALLER_SERVICE_COMPONENT_TMPLDIR}/${x}.tmpl > ${COMPONENT_BASE}/conf/${x}
 done
+mkdir -p ${COMPONENT_BASE}/conf/Catalina/localhost
+process_template ${INSTALLER_SERVICE_COMPONENT_TMPLDIR}/context-manager.xml.tmpl > ${COMPONENT_BASE}/conf/Catalina/localhost/manager.xml
+
+echo "[-mkinst-] ***note*** Don't forget to fix username and password values in tomcat-users.xml ..."
 
 #
 # install component profile script into place

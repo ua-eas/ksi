@@ -13,7 +13,15 @@
   <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
 
   <!-- Global JNDI resources -->
-  <GlobalNamingResources />
+  <GlobalNamingResources>
+
+    <!-- Point to a simple user file for basic authentication -->
+    <Resource name="UserDatabase" auth="Container" type="org.apache.catalina.UserDatabase"
+              description="User database that can be updated and saved"
+              factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+              pathname="conf/tomcat-users.xml" />
+
+  </GlobalNamingResources>
 
   <!-- Catalina service -->
   <Service name="Catalina">
@@ -56,54 +64,6 @@
 
     <!-- Catalina engine -->
     <Engine name="Catalina" defaultHost="localhost" jvmRoute="{{TOMCAT_JVM_ROUTE}}">
-
-      <!-- Cluster definition -->
-      <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster" channelSendOptions="8">
-
-        <Manager className="org.apache.catalina.ha.session.DeltaManager"
-                 expireSessionsOnShutdown="false"
-                 notifyListenersOnReplication="true"
-                 />
-
-        <Channel className="org.apache.catalina.tribes.group.GroupChannel">
-
-          <Membership className="org.apache.catalina.tribes.membership.McastService"
-                      address="{{TOMCAT_CLUSTER_MCAST_IPADDR}}"
-                      port="{{TOMCAT_CLUSTER_MCAST_PORT}}"
-                      frequency="500"
-                      dropTime="3000"
-                      />
-
-          <Receiver className="org.apache.catalina.tribes.transport.nio.NioReceiver"
-                    address="auto"
-                    port="{{TOMCAT_CLUSTER_RECV_PORT}}"
-                    selectorTimeout="100"
-                    maxThreads="8"
-                    />
-
-          <Sender className="org.apache.catalina.tribes.transport.ReplicationTransmitter">
-            <Transport className="org.apache.catalina.tribes.transport.nio.PooledParallelSender" />
-          </Sender>
-
-          <Interceptor className="org.apache.catalina.tribes.group.interceptors.TcpFailureDetector" />
-          <Interceptor className="org.apache.catalina.tribes.group.interceptors.MessageDispatch15Interceptor" />
-          <Interceptor className="org.apache.catalina.tribes.group.interceptors.ThroughputInterceptor" />
-
-        </Channel>
-
-        <Valve className="org.apache.catalina.ha.tcp.ReplicationValve"
-               filter=".*\.gif;.*\.js;.*\.jpg;.*\.png;.*\.htm;.*\.html;.*\.css;.*\.txt;"
-               />
-
-        <Valve className="org.apache.catalina.ha.session.JvmRouteBinderValve"
-               enabled="true"
-               sessionIdAttribute="takeoverSessionID"
-               />	
-
-        <ClusterListener className="org.apache.catalina.ha.session.JvmRouteSessionIDBinderListener" />
-        <ClusterListener className="org.apache.catalina.ha.session.ClusterSessionListener" />
-
-      </Cluster>
 
       <!-- Localhost virtual host -->
       <Host name="localhost"  appBase="webapps" unpackWARs="true" autoDeploy="true">
