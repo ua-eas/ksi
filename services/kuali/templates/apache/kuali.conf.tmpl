@@ -1,0 +1,216 @@
+# important for our use of apache mod_status
+ExtendedStatus On
+
+#
+# kfs {{SERVICE_ENVIRONMENT}} virtual host configuration
+#
+<VirtualHost *:80>
+    ServerName {{APACHE_KFS_SERVER_NAME}}
+    DocumentRoot /var/www/html
+
+    # send logs off-box
+    CustomLog "|/usr/bin/logger -t kfs-{{SERVICE_ENVIRONMENT}} -i -p local7.info" combined
+    ErrorLog "|/usr/bin/logger -t kfs-{{SERVICE_ENVIRONMENT}} -i -p local7.error"
+
+    # tweak some request parameters
+    ProxyIOBufferSize 24576
+    LimitRequestFieldsize 24576
+
+    # tweak cookies for increased security
+    Header edit Set-Cookie ^(.*)$ $1;Secure;HttpOnly
+    Header add Set-Cookie "ROUTEID=.%{BALANCER_WORKER_ROUTE}e; path=/" env=BALANCER_ROUTE_CHANGED
+
+    # set externally-visible url for cas-based authentication
+    CasRootProxiedAs https://{{APACHE_KFS_SERVER_NAME}}
+
+    # define balancer pool back to application tier
+    <Proxy balancer://kfs{{SERVICE_ENVIRONMENT}}>
+        BalancerMember ajp://{{APACHE_APPSVR_HOSTNAME}}:{{APACHE_KFS_AJP_PORT}} route={{SERVICE_ENVIRONMENT}}0 keepalive=On ttl=60 ping=1 timeout=3600
+        ProxySet stickysession=ROUTEID
+    </Proxy>
+
+    # enable server info, server status, and balancer manager for select logins on specific subnets
+    <LocationMatch /{{APACHE_WEBSVR_HKEY}}/server-info>
+        AuthType CAS
+        AuthName webauth
+        Require user tmerritt warrenv clintonl kellehs taz tonyjohnson bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson
+        Order deny,allow
+        Deny from all
+        Allow from 10.138.2.
+        Allow from 150.135.241.1/255.255.255.0
+        Satisfy all
+        SetHandler server-info
+    </LocationMatch>
+    <LocationMatch /{{APACHE_WEBSVR_HKEY}}/server-status>
+        AuthType CAS
+        AuthName webauth
+        Require user tmerritt warrenv clintonl kellehs taz tonyjohnson bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson
+        Order deny,allow
+        Deny from all
+        Allow from 10.138.2.
+        Allow from 150.135.241.1/255.255.255.0
+        Satisfy all
+        SetHandler server-status
+    </LocationMatch>
+    <LocationMatch /{{APACHE_WEBSVR_HKEY}}/balancer-manager>
+        AuthType CAS
+        AuthName webauth
+        Require user tmerritt warrenv clintonl kellehs taz tonyjohnson bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson
+        Order deny,allow
+        Deny from all
+        Allow from 10.138.2.
+        Allow from 150.135.241.1/255.255.255.0
+        Satisfy all
+        SetHandler balancer-manager
+    </LocationMatch>
+
+    # enable web services interface for specific IP addresses
+    <LocationMatch "/kfs-(.{3})/(ws|remoting)">
+        Order deny,allow
+        Deny from all
+        Allow from 10.140.5.26  # control-m winfs server
+        Allow from 10.140.5.39  # this webserver's underlying app server
+    </LocationMatch>
+
+    # enable reverse proxy services
+    ProxyRequests Off
+    ProxyStatus On
+
+    # enable reverse proxied access to kfs web application
+    ProxyPass /kfs-{{SERVICE_ENVIRONMENT}} balancer://kfs{{SERVICE_ENVIRONMENT}}/kfs-{{SERVICE_ENVIRONMENT}}
+    ProxyPassReverse /kfs-{{SERVICE_ENVIRONMENT}} balancer://kfs{{SERVICE_ENVIRONMENT}}/kfs-{{SERVICE_ENVIRONMENT}}
+    ProxyPass /kfs/{{SERVICE_ENVIRONMENT}} balancer://kfs{{SERVICE_ENVIRONMENT}}/kfs/{{SERVICE_ENVIRONMENT}}
+    ProxyPassReverse /kfs/{{SERVICE_ENVIRONMENT}} balancer://kfs{{SERVICE_ENVIRONMENT}}/kfs/{{SERVICE_ENVIRONMENT}}
+
+    # enable reverse proxied access to tomcat manager application for specific logins and subnets
+    ProxyPass /{{APACHE_APPSVR_HKEY}}/manager http://{{APACHE_APPSVR_HOSTNAME}}:{{APACHE_KFS_HTTP_PORT}}/manager
+    ProxyPassReverse /{{APACHE_APPSVR_HKEY}}/manager http://{{APACHE_APPSVR_HOSTNAME}}:{{APACHE_KFS_HTTP_PORT}}/manager
+    <LocationMatch /{{APACHE_APPSVR_HKEY}}/manager>
+        AuthType CAS
+        AuthName webauth
+        Require user tmerritt warrenv clintonl kellehs taz tonyjohnson bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson
+        Order deny,allow
+        Deny from all
+        Allow from 10.138.2.
+        Allow from 150.135.241.1/255.255.255.0
+        Satisfy all
+    </LocationMatch>
+    RewriteEngine on
+    RewriteCond %{HTTP_REFERER} /{{APACHE_APPSVR_HKEY}}/manager [NC]
+    RewriteCond %{REQUEST_URI} !/{{APACHE_APPSVR_HKEY}}/manager [NC]
+    RewriteRule ^/(.*) /{{APACHE_APPSVR_HKEY}}/$1 [R]
+
+    # redirect root url requests to the web application
+    RewriteEngine On
+    RewriteCond %{REQUEST_URI} ^/$
+    RewriteCond %{HTTP_HOST} ^{{APACHE_KFS_SERVER_NAME}}$
+    RewriteRule (.*) https://{{APACHE_KFS_SERVER_NAME}}/kfs-{{SERVICE_ENVIRONMENT}}/ [R=301]
+
+</VirtualHost>
+
+#
+# kra {{SERVICE_ENVIRONMENT}} virtual host configuration
+#
+<VirtualHost *:80>
+    ServerName {{APACHE_KC_SERVER_NAME}}
+    DocumentRoot /var/www/html
+
+    # send logs off-box
+    CustomLog "|/usr/bin/logger -t kc-{{SERVICE_ENVIRONMENT}} -i -p local7.info" combined
+    ErrorLog "|/usr/bin/logger -t kc-{{SERVICE_ENVIRONMENT}} -i -p local7.error"
+
+    # tweak some request parameters
+    ProxyIOBufferSize 24576
+    LimitRequestFieldsize 24576
+
+    # tweak cookies for increased security
+    Header edit Set-Cookie ^(.*)$ $1;Secure;HttpOnly
+    Header add Set-Cookie "ROUTEID=.%{BALANCER_WORKER_ROUTE}e; path=/" env=BALANCER_ROUTE_CHANGED
+
+    # set externally-visible url for cas-based authentication
+    CasRootProxiedAs https://{{APACHE_KC_SERVER_NAME}}
+
+    # define balancer pool back to application tier
+    <Proxy balancer://kc{{SERVICE_ENVIRONMENT}}>
+        BalancerMember ajp://{{APACHE_APPSVR_HOSTNAME}}:{{APACHE_KC_AJP_PORT}} route={{SERVICE_ENVIRONMENT}}0 keepalive=On ttl=60 ping=1 timeout=3600
+        ProxySet stickysession=ROUTEID
+    </Proxy>
+
+    # enable server info, server status, and balancer manager for select logins on specific subnets
+    <LocationMatch /{{APACHE_WEBSVR_HKEY}}/server-info>
+        AuthType CAS
+        AuthName webauth
+        Require user tmerritt warrenv clintonl kellehs taz tonyjohnson bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson
+        Order deny,allow
+        Deny from all
+        Allow from 10.138.2.
+        Allow from 150.135.241.1/255.255.255.0
+        Satisfy all
+        SetHandler server-info
+    </LocationMatch>
+    <LocationMatch /{{APACHE_WEBSVR_HKEY}}/server-status>
+        AuthType CAS
+        AuthName webauth
+        Require user tmerritt warrenv clintonl kellehs taz tonyjohnson bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson
+        Order deny,allow
+        Deny from all
+        Allow from 10.138.2.
+        Allow from 150.135.241.1/255.255.255.0
+        Satisfy all
+        SetHandler server-status
+    </LocationMatch>
+    <LocationMatch /{{APACHE_WEBSVR_HKEY}}/balancer-manager>
+        AuthType CAS
+        AuthName webauth
+        Require user tmerritt warrenv clintonl kellehs taz tonyjohnson bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson
+        Order deny,allow
+        Deny from all
+        Allow from 10.138.2.
+        Allow from 150.135.241.1/255.255.255.0
+        Satisfy all
+        SetHandler balancer-manager
+    </LocationMatch>
+
+    # enable web services interface for specific IP addresses
+    <LocationMatch "/kra-(.{3})/(ws|remoting)">
+        Order deny,allow
+        Deny from all
+        Allow from 10.140.5.26  # control-m winfs server
+        Allow from 10.140.5.39  # this webserver's underlying app server
+    </LocationMatch>
+
+    # enable reverse proxy services
+    ProxyRequests Off
+    ProxyStatus On
+
+    # enable reverse proxied access to kfs web application
+    ProxyPass /kra-{{SERVICE_ENVIRONMENT}} balancer://kc{{SERVICE_ENVIRONMENT}}/kra-{{SERVICE_ENVIRONMENT}}
+    ProxyPassReverse /kra-{{SERVICE_ENVIRONMENT}} balancer://kc{{SERVICE_ENVIRONMENT}}/kra-{{SERVICE_ENVIRONMENT}}
+    ProxyPass /kra/{{SERVICE_ENVIRONMENT}} balancer://kc{{SERVICE_ENVIRONMENT}}/kra/{{SERVICE_ENVIRONMENT}}
+    ProxyPassReverse /kra/{{SERVICE_ENVIRONMENT}} balancer://kc{{SERVICE_ENVIRONMENT}}/kra/{{SERVICE_ENVIRONMENT}}
+
+    # enable reverse proxied access to tomcat manager application for specific logins and subnets
+    ProxyPass /{{APACHE_APPSVR_HKEY}}/manager http://{{APACHE_APPSVR_HOSTNAME}}:{{APACHE_KC_HTTP_PORT}}/manager
+    ProxyPassReverse /{{APACHE_APPSVR_HKEY}}/manager http://{{APACHE_APPSVR_HOSTNAME}}:{{APACHE_KC_HTTP_PORT}}/manager
+    <LocationMatch /{{APACHE_APPSVR_HKEY}}/manager>
+        AuthType CAS
+        AuthName webauth
+        Require user tmerritt warrenv clintonl kellehs taz tonyjohnson bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson
+        Order deny,allow
+        Deny from all
+        Allow from 10.138.2.
+        Allow from 150.135.241.1/255.255.255.0
+        Satisfy all
+    </LocationMatch>
+    RewriteEngine on
+    RewriteCond %{HTTP_REFERER} /{{APACHE_APPSVR_HKEY}}/manager [NC]
+    RewriteCond %{REQUEST_URI} !/{{APACHE_APPSVR_HKEY}}/manager [NC]
+    RewriteRule ^/(.*) /{{APACHE_APPSVR_HKEY}}/$1 [R]
+
+    # redirect root url requests to the web application
+    RewriteEngine On
+    RewriteCond %{REQUEST_URI} ^/$
+    RewriteCond %{HTTP_HOST} ^{{APACHE_KC_SERVER_NAME}}$
+    RewriteRule (.*) https://{{APACHE_KC_SERVER_NAME}}/kra-{{SERVICE_ENVIRONMENT}}/ [R=301]
+
+</VirtualHost>
