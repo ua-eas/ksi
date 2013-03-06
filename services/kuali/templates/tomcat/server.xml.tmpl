@@ -71,8 +71,9 @@
         <!-- Define an Apache-style access log to track connections --> 
         <Valve className="org.apache.catalina.valves.AccessLogValve"
                directory="logs"
-               prefix="localhost_access_log."
-               suffix=".txt"
+               prefix="localhost_access_log"
+               suffix=".log"
+               rotatable="false"
                pattern="%h %l %u %t &quot;%r&quot; %s %b"
                />
 
