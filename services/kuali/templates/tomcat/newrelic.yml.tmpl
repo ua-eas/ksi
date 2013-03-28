@@ -33,6 +33,21 @@ tst:
   app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Test)
   agent_enabled: true
 
+cnv:
+  <<: *default_settings
+  app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Conversion)
+  agent_enabled: true
+
+cfg:
+  <<: *default_settings
+  app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Config)
+  agent_enabled: true
+
+trn:
+  <<: *default_settings
+  app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Train)
+  agent_enabled: true
+
 stg:
   <<: *default_settings
   app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Staging)
