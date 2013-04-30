@@ -28,6 +28,11 @@ dev:
   app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Development)
   agent_enabled: false
 
+dmo:
+  <<: *default_settings
+  app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Demo)
+  agent_enabled: false
+
 tst:
   <<: *default_settings
   app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Test)
