@@ -1,0 +1,19 @@
+#
+# component profile for rhubarb-1.0
+#
+
+# Set the BATCH_HOME environment variable
+export BATCH_HOME={{RHUBARB_BATCH_HOME}}
+
+{{COMPONENT_PREFIX}}_HOME={{COMPONENT_HOME}}
+{{COMPONENT_PREFIX}}_CONFIG={{COMPONENT_CONFIG}}
+{{COMPONENT_PREFIX}}_BASE={{COMPONENT_BASE}}
+{{COMPONENT_PREFIX}}_LOGS={{COMPONENT_LOGS}}
+export {{COMPONENT_PREFIX}}_HOME {{COMPONENT_PREFIX}}_CONFIG {{COMPONENT_PREFIX}}_BASE {{COMPONENT_PREFIX}}_LOGS
+
+# For Rhubarb, we will be using Capistrano to deploy it. In the home directory, we will have (among other directories)
+# a releases directory which may contain the current deployed version of Rhubarb and several previous verions. There
+# will be a symlink that links the currently deployed version to the correct version in the releases directory.
+# Therefore, we need to add $RHUBARB_HOME/current/bin to the path.
+PATH=${{COMPONENT_PREFIX}}_HOME/current/bin:$PATH
+export PATH
