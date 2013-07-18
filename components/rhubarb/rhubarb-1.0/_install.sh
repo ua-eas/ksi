@@ -1,7 +1,7 @@
 #
 # component install script for rhubarb 1.0
 #
-# Note: Rhubarb is a component we actually develop and deploy seporately 
+# Note: Rhubarb is a component we actually develop and deploy separately 
 #       in house. This component install will setup the service infrastructure
 #		requirements for this component but it will be deployed on it's own
 #		development and deployment cycle.
@@ -31,19 +31,19 @@ echo "COMPONENT_HOME: ${COMPONENT_HOME}"
 #
 # Add the expected control directory
 echo "[-install-] Adding batch home control structure ..."
-mkdir -p "${RHUBARB_BATCH_HOME}control"
+mkdir -p "${RHUBARB_BATCH_HOME}/control"
 
 #
 # Add the expected logs directory
 echo "[-install-] Adding batch home logs structure ..."
-mkdir -p "${RHUBARB_BATCH_HOME}logs"
+mkdir -p "${RHUBARB_BATCH_HOME}/logs"
 
 #
 # Set the runnable file
 
 # remove the old .runable file if it exists
 echo "[-install-] Removing all existing .runnable files ..."
-rm ${RHUBARB_BATCH_HOME}control/*.runnable
+rm ${RHUBARB_BATCH_HOME}/control/*.runnable
 
 echo "[-install-] Adding the runnable file ..."
-touch ${RHUBARB_BATCH_HOME}control/${RHUBARB_BATCH_RUNNABLE_HOST}.runnable
+touch ${RHUBARB_BATCH_HOME}/control/${RHUBARB_BATCH_RUNNABLE_HOST}.runnable
