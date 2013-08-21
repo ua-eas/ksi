@@ -1,6 +1,6 @@
 #
 #
-# component install script for ruby-1.9.3-p286
+# component install script for ruby-2.0.0-p247
 #
 
 #
