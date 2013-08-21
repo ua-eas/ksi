@@ -1,15 +1,15 @@
 #
 #
-# component install script for ruby-1.9.3-p286
+# component install script for ruby-2.0.0-p247
 #
 
 #
 # Globals.
 
-distfile="ruby-1.9.3-p286.tar.gz"
-unpacksto="ruby-1.9.3-p286"
+distfile="ruby-2.0.0-p247.tar.gz"
+unpacksto="ruby-2.0.0-p247"
 thisdir=`pwd`
-gemlist="activesupport log4r mail thor"
+gemlist="activesupport log4r mail thor bundler"
 
 #
 # Make the component build and log directories.
