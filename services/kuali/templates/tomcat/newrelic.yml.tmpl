@@ -67,3 +67,8 @@ sup:
   <<: *default_settings
   app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Support)
   agent_enabled: true
+
+  cdf:
+  <<: *default_settings
+  app_name: {{TOMCAT_NEWRELIC_APPNAME}} (Continuous Delivery Framework)
+  agent_enabled: false
