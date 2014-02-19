@@ -1,4 +1,5 @@
 #
+#
 # component install script for ruby-1.9.3-p286
 #
 
