@@ -34,7 +34,8 @@ cd ${COMPONENT_VERSION_BUILDDIR}
 # Unpack the distribution file.
 
 echo "[-install-] Unpacking distribution file ..."
-tar zxf ${distfile}
+mkdir ${unpacksto}
+tar zxf ${distfile} -C ${unpacksto}
 cd ${unpacksto}
 
 #
