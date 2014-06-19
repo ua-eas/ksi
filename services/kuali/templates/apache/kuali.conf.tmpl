@@ -33,7 +33,7 @@ ExtendedStatus On
     <LocationMatch /{{APACHE_WEBSVR_HKEY}}/server-info>
         AuthType CAS
         AuthName webauth
-        Require user tmerritt warrenv clintonl kellehs taz bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker
+        Require user sskinner tmerritt warrenv clintonl kellehs taz bpearce alwatson hlo jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker pwalters
         Order deny,allow
         Deny from all
         Allow from 10.138.2.
@@ -44,19 +44,18 @@ ExtendedStatus On
     <LocationMatch /{{APACHE_WEBSVR_HKEY}}/server-status>
         AuthType CAS
         AuthName webauth
-        Require user tmerritt warrenv clintonl kellehs taz bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker
+        Require user sskinner tmerritt warrenv clintonl kellehs taz bpearce alwatson hlo jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker pwalters
         Order deny,allow
         Deny from all
         Allow from 10.138.2.
         Allow from 150.135.241.1/255.255.255.0
-        Allow from 128.196.130.92
         Satisfy all
         SetHandler server-status
     </LocationMatch>
     <LocationMatch /{{APACHE_WEBSVR_HKEY}}/balancer-manager>
         AuthType CAS
         AuthName webauth
-        Require user tmerritt warrenv clintonl kellehs taz bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker
+        Require user sskinner tmerritt warrenv clintonl kellehs taz bpearce alwatson hlo jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker pwalters
         Order deny,allow
         Deny from all
         Allow from 10.138.2.
@@ -69,8 +68,8 @@ ExtendedStatus On
     <LocationMatch "/kfs-(.{3})/(ws|remoting)">
         Order deny,allow
         Deny from all
-        Allow from 10.140.5.26  # control-m winfs server
-        Allow from 10.140.5.39  # this webserver's underlying app server
+        Allow from 10.140.5.26 # control-m winfs server
+        Allow from 10.140.5.39 # this webserver's underlying app server
     </LocationMatch>
 
     # enable reverse proxy services
@@ -89,7 +88,7 @@ ExtendedStatus On
     <LocationMatch /{{APACHE_APPSVR_HKEY}}/manager>
         AuthType CAS
         AuthName webauth
-        Require user tmerritt warrenv clintonl kellehs taz bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker
+        Require user sskinner tmerritt warrenv clintonl kellehs taz bpearce alwatson hlo jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker pwalters
         Order deny,allow
         Deny from all
         Allow from 10.138.2.
@@ -124,6 +123,9 @@ ExtendedStatus On
     ProxyIOBufferSize 24576
     LimitRequestFieldsize 24576
 
+  # Setting the default Charset to ISO-8859-1
+    AddDefaultCharset On
+
     # tweak cookies for increased security
     Header edit Set-Cookie ^(.*)$ $1;Secure;HttpOnly
     Header add Set-Cookie "ROUTEID=.%{BALANCER_WORKER_ROUTE}e; path=/" env=BALANCER_ROUTE_CHANGED
@@ -133,7 +135,7 @@ ExtendedStatus On
 
     # define balancer pool back to application tier
     <Proxy balancer://kc{{SERVICE_ENVIRONMENT}}>
-        BalancerMember ajp://{{APACHE_APPSVR_HOSTNAME}}:{{APACHE_KC_AJP_PORT}} route={{SERVICE_ENVIRONMENT}}0 keepalive=On ttl=60 ping=1 timeout=3600
+        BalancerMember ajp://{{APACHE_APPSVR_HOSTNAME}}:{{APACHE_KC_AJP_PORT}} route={{SERVICE_ENVIRONMENT}}0 keepalive=On ttl=60 ping=3 timeout=3600
         ProxySet stickysession=ROUTEID
     </Proxy>
 
@@ -141,7 +143,7 @@ ExtendedStatus On
     <LocationMatch /{{APACHE_WEBSVR_HKEY}}/server-info>
         AuthType CAS
         AuthName webauth
-        Require user tmerritt warrenv clintonl kellehs taz bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker
+        Require user sskinner tmerritt warrenv clintonl kellehs taz bpearce alwatson hlo jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker pwalters
         Order deny,allow
         Deny from all
         Allow from 10.138.2.
@@ -152,7 +154,7 @@ ExtendedStatus On
     <LocationMatch /{{APACHE_WEBSVR_HKEY}}/server-status>
         AuthType CAS
         AuthName webauth
-        Require user tmerritt warrenv clintonl kellehs taz bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker
+        Require user sskinner tmerritt warrenv clintonl kellehs taz bpearce alwatson hlo jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker pwalters
         Order deny,allow
         Deny from all
         Allow from 10.138.2.
@@ -163,7 +165,7 @@ ExtendedStatus On
     <LocationMatch /{{APACHE_WEBSVR_HKEY}}/balancer-manager>
         AuthType CAS
         AuthName webauth
-        Require user tmerritt warrenv clintonl kellehs taz bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker
+        Require user sskinner tmerritt warrenv clintonl kellehs taz bpearce alwatson hlo jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker pwalters
         Order deny,allow
         Deny from all
         Allow from 10.138.2.
@@ -176,8 +178,8 @@ ExtendedStatus On
     <LocationMatch "/kra-(.{3})/(ws|remoting)">
         Order deny,allow
         Deny from all
-        Allow from 10.140.5.26  # control-m winfs server
-        Allow from 10.140.5.39  # this webserver's underlying app server
+        Allow from 10.140.5.26 # control-m winfs server
+        Allow from 10.140.5.39 # this webserver's underlying app server
     </LocationMatch>
 
     # enable reverse proxy services
@@ -196,7 +198,7 @@ ExtendedStatus On
     <LocationMatch /{{APACHE_APPSVR_HKEY}}/manager>
         AuthType CAS
         AuthName webauth
-        Require user tmerritt warrenv clintonl kellehs taz bpearce alwatson sskinner hlo kevinmco jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker
+        Require user sskinner tmerritt warrenv clintonl kellehs taz bpearce alwatson hlo jwingate ahollamo srawlins jpbriede mgsimpson shaloo nataliac rbtucker pwalters
         Order deny,allow
         Deny from all
         Allow from 10.138.2.
